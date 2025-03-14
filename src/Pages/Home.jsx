@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 
 const Home = () => {
   return (
@@ -11,7 +12,25 @@ const Home = () => {
 
       {/* Hero Content */}
       <div className="relative text-white">
-        <h1 className="text-4xl font-bold">Welcome to GetLocalContractors</h1>
+        <motion.h1 
+        drag
+        dragConstraints={{left:0,right:1000,top:0,bottom:200}}
+        initial={{
+          x:40,
+        }}
+        animate={{
+          
+          x:[0,400,400,0,0],
+          y:[0,0,200,200,0],
+          
+          
+        }}
+        transition={{
+          smooth:3,
+          duration:3,
+          
+        }} 
+        className="text-4xl font-bold">Welcome to GetLocalContractors</motion.h1>
         <p className="text-lg mt-2">Find the best contractors near you!</p>
       </div>
 

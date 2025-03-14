@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button"
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,7 +19,7 @@ const NavBar = () => {
         <div className="flex items-center p-2">
           <Link to="/" className="cursor-pointer text-lg font-bold">
             <img
-              src="/assets/images/logo.png"
+              src="/assets/images/Local-Contractors-Logo.png"
               alt="Local Contractors"
               className="h-24 w-auto"
             />
@@ -55,13 +56,13 @@ const NavBar = () => {
         <ul
           className={`${
             menuOpen ? "flex" : "hidden"
-          } md:flex flex-col md:flex-row md:items-stretch space-y-3 md:space-y-0 md:space-x-3 absolute md:static top-16 left-0 w-full md:w-auto bg-primary md:bg-transparent md:top-0 p-4 md:p-0`}
+          } md:flex flex-col md:flex-row md:items-stretch space-y-3 md:space-y-0 md:space-x-3 absolute md:static top-16 left-0 w-full md:w-auto bg-primary md:bg-secondary md:rounded-2xl md:text-primary md:top-5 p-4 md:p-0`}
         >
           {menuItems.map((item) => (
             <li key={item.path} className="flex">
               <Link
                 to={item.path}
-                className="block w-full px-4 py-4 cursor-pointer hover:text-heading hover-animated-border"
+                className="block w-full px-4 py-4 cursor-pointer"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
@@ -69,10 +70,11 @@ const NavBar = () => {
             </li>
           ))}
         </ul>
+        <Button className="md:flex hidden">Get Our Consultation!</Button>
       </div>
     </header>
   );
 };
 
 export default NavBar;
-// d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+
