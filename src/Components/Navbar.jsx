@@ -29,7 +29,7 @@ const NavBar = () => {
 
         {/* Hamburger Button */}
         <button
-          className="flex justify-end p-4 md:hidden"
+          className="flex justify-end p-4 md:hidden pl-42"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <svg

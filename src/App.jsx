@@ -6,10 +6,12 @@ import Services from "./Pages/Services";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Footer from "./Components/Footer";
+import AutoScroll from "./Components/AutoScroll";
 
 const App = () => {
   return (
     <Router>
+        <AutoScroll/>
         <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>}></Route>

@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { allServices } from "../Components/servicesData";
 import { motion } from "motion/react";
 
-const Services = ({ visibleServices }) => {
+const Services = ({ visibleServices, homeView = false }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white py-16">
-      <h1 className="font-bold text-4xl text-center pt-10 pb-10">
-        Our Offered Services
+    <div className="py-16">
+      <h1 className={`font-bold text-4xl text-center pt-10 pb-10 ${homeView ? "hidden" : ""}`}>
+        Our Services
       </h1>
       <div className="container mx-auto px-6 lg:px-20 ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 cursor-pointer">
@@ -37,10 +37,10 @@ const Services = ({ visibleServices }) => {
         {visibleServices < allServices.length && (
           <div className="text-center mt-8">
             <button
-              className="btn bg-[#ffb000] animate-bounce"
+              className=""
               onClick={() => navigate("/services")}
             >
-              Show All
+              Show All Services
             </button>
           </div>
         )}

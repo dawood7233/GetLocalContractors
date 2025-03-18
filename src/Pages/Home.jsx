@@ -47,8 +47,10 @@ const Home = () => {
       
     </div>
     {/* services section */}
-
-    <Services />
+    <section className="bg-black">
+    <Services visibleServices={4} homeView={true}/>
+    </section>
+    <section className=""></section>
     </div>
   );
 };
