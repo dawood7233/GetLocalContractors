@@ -1,9 +1,11 @@
 import React from "react";
 import { motion } from "motion/react";
+import Services from "./Services";
 
 const Home = () => {
   return (
-    <div className="relative md:w-full md:h-screen h-screen flex items-center  bg-gray-800">
+    <div>
+    <div className="relative md:w-full md:h-screen h-screen flex items-center bg-black">
       {/* Hero Section */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
@@ -42,6 +44,11 @@ const Home = () => {
           className="md:w-xl md:h-118 w-sm h-60"
         />
       </div>
+      
+    </div>
+    {/* services section */}
+
+    <Services />
     </div>
   );
 };

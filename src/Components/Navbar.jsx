@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button"
 
+
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -62,7 +63,7 @@ const NavBar = () => {
             <li key={item.path} className="flex">
               <Link
                 to={item.path}
-                className="block w-full px-4 py-4 cursor-pointer"
+                className="block w-full px-4 py-4 cursor-pointer font-semibold"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
@@ -70,7 +71,9 @@ const NavBar = () => {
             </li>
           ))}
         </ul>
-        <Button className="md:flex hidden">Get Our Consultation!</Button>
+        <Link to="/Services">
+        <Button className="md:flex hidden text-secondary cursor-pointer">Get Our Consultation!</Button>
+        </Link>
       </div>
     </header>
   );
