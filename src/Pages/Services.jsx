@@ -11,19 +11,20 @@ const Services = ({ visibleServices, homeView = false }) => {
       <h1 className={`font-bold text-4xl text-center pt-10 pb-10 ${homeView ? "hidden" : ""}`}>
         Our Services
       </h1>
-      <div className="container mx-auto px-6 lg:px-20 ">
+      <div className="container mx-auto px-6 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 cursor-pointer">
           {allServices.slice(0, visibleServices).map((service) => (
             <div
               key={service.id}
-              className="bg-primary text-secondary shadow-md  rounded-4xl p-6 text-center"
+              className="bg-primary text-secondary shadow-md  rounded-4xl p-6 text-center hover:scale-105 transition-transform duration-500"
               onClick={() => navigate(`/services/${service.title}`)}
             >
-              <div className="mb-4 ">
-                <img
+              <div className="mb-4">
+                <img 
                   src={service.image}
                   alt={service.title}
-                  className="w-20 h-20 mx-auto hover:scale-155 transition-transform duration-500"
+                  className="w-20 h-20 mx-auto"
+                  loading="lazy"
                 />
               </div>
               <h3 className="text-xl font-semibold mb-2 ">{service.title}</h3>
@@ -37,7 +38,7 @@ const Services = ({ visibleServices, homeView = false }) => {
         {visibleServices < allServices.length && (
           <div className="text-center mt-8">
             <button
-              className=""
+              className="text-white"
               onClick={() => navigate("/services")}
             >
               Show All Services

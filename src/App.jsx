@@ -7,6 +7,7 @@ import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Footer from "./Components/Footer";
 import AutoScroll from "./Components/AutoScroll";
+import ServiceDetails from "./Pages/ServiceDetails";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/Services" element={<Services/>}></Route>
           <Route path="/Contact" element={<Contact/>}></Route>
           <Route path="/About" element={<About/>}></Route>
+          <Route path="/ServiceDetails" element={<ServiceDetails/>}></Route>
         </Routes>
         <Footer/>
     </Router>

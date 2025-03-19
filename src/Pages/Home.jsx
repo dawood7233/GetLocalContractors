@@ -10,6 +10,7 @@ const Home = () => {
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
         style={{ backgroundImage: "url('/assets/images/hero-background.jpg')" }}
+        loading="lazy"
       ></div>
 
       {/* Hero Content */}
