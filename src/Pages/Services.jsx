@@ -17,7 +17,7 @@ const Services = ({ visibleServices, homeView = false }) => {
             <div
               key={service.id}
               className="bg-primary text-secondary shadow-md  rounded-4xl p-6 text-center hover:scale-105 transition-transform duration-500"
-              onClick={() => navigate(`/services/${service.title}`)}
+              onClick={() => navigate(`/Services/${service.title}`)}
             >
               <div className="mb-4">
                 <img 
