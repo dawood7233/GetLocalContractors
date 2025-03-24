@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const UserService = () => {
   return (
     <div className="user-terms pt-20 pb-10">
-      <div className="bg-gradient-to-r from-amber-500 to-[#1f2020] text-black text-center py-16 px-6 w-full hover">
+      <div className=" text-black text-center py-16 px-6 w-full hover">
         <h1 className="text-4xl font-bold mb-4 cursor-pointer">
           User Terms And Conditions
         </h1>

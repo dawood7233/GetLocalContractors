@@ -16,7 +16,7 @@ const Services = ({ visibleServices, homeView = false }) => {
           {allServices.slice(0, visibleServices).map((service) => (
             <div
               key={service.id}
-              className="bg-primary text-secondary shadow-md  rounded-4xl p-6 text-center hover:scale-105 transition-transform duration-500"
+              className="bg-secondary-foreground text-secondary shadow-md  rounded-4xl p-6 text-center hover:scale-105 transition-transform duration-500"
               onClick={() => navigate(`/Services/${service.title}`)}
             >
               <div className="mb-4">
@@ -29,8 +29,8 @@ const Services = ({ visibleServices, homeView = false }) => {
               </div>
               <h3 className="text-xl font-semibold mb-2 ">{service.title}</h3>
               <p className="text-secondary mb-4">{service.description}</p>
-              <button className="px-20 py-2 bg-[#1f2020] text-white rounded-lg ">
-                Get Started
+              <button className="px-20 py-2 bg-secondary text-white rounded-lg ">
+                Get Quote
               </button>
             </div>
           ))}

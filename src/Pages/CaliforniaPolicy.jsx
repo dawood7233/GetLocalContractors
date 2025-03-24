@@ -3,7 +3,7 @@ import React from "react";
 const CaliforniaPolicy = () => {
   return (
     <div className="pt-20 ">
-      <div className="bg-gradient-to-r from-amber-500 to-[#1f2020] text-black text-center py-16 px-6 w-full hover">
+      <div className=" text-black text-center py-16 px-6 w-full hover">
         <h1 className="text-4xl font-bold mb-4 cursor-pointer">
           California Privacy
         </h1>
@@ -29,7 +29,7 @@ const CaliforniaPolicy = () => {
           other privacy laws and otherwise excluded from the scope of the CCPA.
           This table identifies the categories of personal information we have
           collected about consumers within the last 12 months:
-          <table class="table-auto border-2 border-amber-300">
+          <table class="table-auto border-2 border-primary">
             <thead>
               <tr>
                 <th>Category</th>

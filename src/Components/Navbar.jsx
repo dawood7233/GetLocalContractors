@@ -8,19 +8,19 @@ const NavBar = () => {
 
   const menuItems = [
     { path: "/", label: "Home" },
-    { path: "/Services", label: "Services" },
+    { path: "/Services", label: "Services"},
     { path: "/About", label: "About Us" },
     { path: "/Contact", label: "Contact" },
   ];
 
   return (
-    <header className="p-4  text-secondary fixed top-0 left-0 w-full z-50 shadow-lg">
+    <header className="p-4  text-secondary fixed top-0 left-0 w-full z-50">
       <div className="container flex justify-between h-14 mx-auto">
         {/* Logo */}
         <div className="flex items-center p-2">
           <Link to="/" className="cursor-pointer text-lg font-bold">
             <img
-              src="/assets/images/Local-Contractors-Logo.png"
+              src="/assets/images/Logo.png"
               alt="Local Contractors"
               className="h-24 w-auto"
             />

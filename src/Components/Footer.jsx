@@ -3,47 +3,78 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div>
-      <footer className=" bg-black text-secondary p-10">
-        <nav>
-          <Link to="/" className="">
+    <footer className="bg-secondary text-secondary-foreground pt-10">
+      <div className="container mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Logo */}
+        <div>
+          <Link to="/" className="inline-block mb-4">
             <img
-              className="h-14 lg:h-16 pl-3"
-              src="/assets/images/Local-Contractors-Logo.png"
-              alt="Logo"
+              className="h-14 lg:h-16"
+              src="/assets/images/Logo.png"
+              alt="Local Contractors Logo"
             />
           </Link>
-        </nav>
-        <nav>
-          <h6 className="">Legal</h6>
-          <Link className="" to="/">
-            Terms of use
-          </Link>
-          <Link className="" to="/">
-            Privacy policy
-          </Link>
-          <Link className="" to="/">
-            California Privacy Notice
-          </Link>
-        </nav>
-        <nav>
-          <h6 className="">Company</h6>
-          <Link className="" to="/About">
-            About us
-          </Link>
-          <Link className="" to="/Contact">
-            Contact
-          </Link>
-        </nav>
-      </footer>
-      <section className="bg-primary-foreground text-secondary p-2 text-center">
-          <p>
-            Copyright © {new Date().getFullYear()} - All rights reserved by
-            GetLocalContractors Pvt Ltd
+          <p className="text-sm">
+            Your trusted platform for connecting with professional contractors
+            near you.
           </p>
-        
-      </section>
-    </div>
+        </div>
+
+        {/* Company Links */}
+        <div>
+          <h6 className="text-lg font-semibold mb-2">Company</h6>
+          <ul className="space-y-1">
+            <li>
+              <Link to="/About" className="hover:underline">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/Contact" className="hover:underline">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Legal Links */}
+        <div>
+          <h6 className="text-lg font-semibold mb-2">Legal</h6>
+          <ul className="space-y-1">
+            <li>
+              <Link to="/UserService" className="hover:underline">
+                Terms of Use
+              </Link>
+            </li>
+            <li>
+              <Link to="/PrivacyPolicy" className="hover:underline">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/CaliforniaPolicy" className="hover:underline">
+                California Privacy Notice
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Optional: Contact Info or Newsletter */}
+        <div>
+          <h6 className="text-lg font-semibold mb-2">Stay Connected</h6>
+          <p className="text-sm mb-2">info@getlocalcontractors.com</p>
+          <p className="text-sm">123 Contractor Lane, Your City, USA</p>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-secondary mt-10 p-4 text-center text-sm bg-primary text-secondary">
+        <p>
+          © {new Date().getFullYear()} GetLocalContractors Pvt Ltd. All rights
+          reserved.
+        </p>
+      </div>
+    </footer>
   );
 };
 

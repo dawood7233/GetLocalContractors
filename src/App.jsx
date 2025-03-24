@@ -8,6 +8,9 @@ import About from "./Pages/About";
 import Footer from "./Components/Footer";
 import AutoScroll from "./Components/AutoScroll";
 import ServiceDetails from "./Pages/ServiceDetails";
+import UserService from "./Pages/UserService";
+import PrivacyPolicy from "./Pages/PrivacyPolicy";
+import CaliforniaPolicy from "./Pages/CaliforniaPolicy";
 
 const App = () => {
   return (
@@ -20,6 +23,9 @@ const App = () => {
           <Route path="/Contact" element={<Contact/>}></Route>
           <Route path="/About" element={<About/>}></Route>
           <Route path="/Services/:title" element={<ServiceDetails/>}></Route>
+          <Route path="/UserService" element={<UserService/>}></Route>
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}></Route>
+          <Route path="/CaliforniaPolicy" element={<CaliforniaPolicy/>}></Route>
         </Routes>
         <Footer/>
     </Router>

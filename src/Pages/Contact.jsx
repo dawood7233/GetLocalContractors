@@ -4,7 +4,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 const Contact = () => {
   return (
     
-    <div className="container mx-auto px-4 py-12 ">
+    <div className="container mx-auto px-4 py-12 mt-10">
       {/* Title Section */}
       <div className="bg-black">
       <div className="relative w-full h-48 flex items-center justify-center text-3xl font-bold bg-cover bg-center" 
