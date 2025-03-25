@@ -16,7 +16,7 @@ const Home = () => {
       ></div>
 
       {/* Hero Content */}
-      <div className="relative text-secondary-foreground">
+      <div className="relative text-secondary-foreground ml-10">
         <div className="">
       <svg xmlns="http://www.w3.org/2000/svg" width="123" height="24" viewBox="0 0 123 24" fill="none"><path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path><path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path><path d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z" fill="#ffb000"></path></svg>
       </div>
