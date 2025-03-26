@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import Services from "./Services";
+import WhyUs from "@/Components/WhyUs";
 
 const Home = () => {
   const animate = {}
@@ -54,7 +55,41 @@ const Home = () => {
     <section className="bg-secondary">
     <Services visibleServices={4} homeView={true}/>
     </section>
-    <section className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa voluptate, nisi voluptas magni voluptates ab excepturi cupiditate? Ab rerum ad soluta veniam mollitia laborum eveniet. Culpa, cum sint vitae modi doloremque repellat nihil ipsam ducimus voluptatem iure dolores similique a quo recusandae praesentium officia, tempora minus? Nihil iure blanditiis veritatis recusandae consequatur eum corporis culpa accusantium repudiandae eaque, laudantium facilis aspernatur ab consequuntur iusto dignissimos adipisci nisi perferendis labore qui fuga voluptates voluptatibus ea? Nulla omnis, perspiciatis, dolorem iure at obcaecati, optio libero perferendis impedit nobis nemo delectus soluta assumenda velit quod! Totam, consequuntur? Fugit tenetur dolorum voluptate consequatur sed autem veritatis aliquid, voluptatum iusto recusandae doloremque repellendus consectetur voluptatibus molestiae hic amet aperiam odit eos totam reiciendis illum a ab. Asperiores architecto fugit itaque cupiditate facere qui cumque ut delectus tempora atque voluptatibus adipisci expedita deserunt amet modi nulla obcaecati, neque aliquid, corporis illo excepturi aliquam omnis. Assumenda impedit velit recusandae molestiae hic beatae architecto vero accusamus repellat. Est vero repellendus nam, saepe inventore, quam odit libero, porro illo eos maxime maiores nostrum sequi! Est accusamus reprehenderit reiciendis ab assumenda enim corporis blanditiis, nam maiores tempore iusto, quisquam architecto molestias odit amet doloremque repellat facilis vel earum autem recusandae minus aspernatur iste nulla? Voluptates aliquam quo voluptatibus est dolore. At totam consequatur dolorum eos libero omnis? Architecto itaque iste, ab dolore illo necessitatibus, est aut laboriosam assumenda consequatur provident sit perspiciatis maiores laborum, fuga dicta numquam quis doloremque corporis optio voluptatum molestias! Pariatur ipsa, dignissimos debitis autem quidem illum, voluptatem sit delectus ducimus fugiat sint! Provident, ipsam quod nam a eligendi, repudiandae blanditiis obcaecati eos, minus rerum hic voluptatum fugiat. Vitae qui alias voluptate ipsam? Illum necessitatibus molestias, iste sequi itaque eligendi a rerum eos eveniet, voluptas consectetur vitae, numquam ut quis libero impedit. Sint, repudiandae? Magni, aut vitae!</section>
+    {/* Divider line */}
+      <div className="flex items-center justify-center my-8">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="70"
+          height="70"
+          viewBox="0 0 123 24"
+          fill="none"
+          className="mr-2"
+        >
+          <path
+            d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+            fill="#ffb000"
+          />
+        </svg>
+        <div className="border-t border-secondary w-full max-w-md"></div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="70"
+          height="70"
+          viewBox="0 0 123 24"
+          fill="none"
+          className="ml-2 -scale-x-100"
+        >
+          <path
+            d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+            fill="#ffb000"
+          />
+        </svg>
+      </div>
+    {/* Why Choose Us Section */}
+    <section className="">
+      <WhyUs />
+    </section>
+
     </div>
   );
 };

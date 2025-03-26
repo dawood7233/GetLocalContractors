@@ -4,11 +4,43 @@ import { useNavigate } from "react-router-dom";
 const About = () => {
   const navigate = useNavigate();
   return (
-    <div className="bg-gray-100 pt-10">
+    <div className="py-16">
       {/* Hero Section */}
-      <div className="  text-black text-center py-16 px-6">
-        <h1 className="text-4xl font-bold pt-5">About Us</h1>
-      </div>
+      <h1
+        className="font-bold md:text-4xl sm:text-2xl text-xl text-center pt-10 pb-20"
+      >
+        <span className="absolute left-[80%] sm:left-[66%] md:left-[70%] top-29">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[70px] h-[14px] sm:w-[90px] sm:h-[18px] md:w-[123px] md:h-[24px]"
+            viewBox="0 0 123 24"
+            fill="none"
+          >
+            <path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path>
+            <path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path>
+            <path
+              d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+              fill="#ffb000"
+            ></path>
+          </svg>
+        </span>
+        ABOUT US
+        <span className="absolute left-[5%] sm:left-[20%] md:left-[16%]  top-29 -scale-x-100">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[70px] h-[14px] sm:w-[90px] sm:h-[18px] md:w-[123px] md:h-[24px]"
+            viewBox="0 0 123 24"
+            fill="none"
+          >
+            <path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path>
+            <path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path>
+            <path
+              d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+              fill="#ffb000"
+            ></path>
+          </svg>
+        </span>
+      </h1>
 
       {/* Why Us Section */}
       <div className="container mx-auto px-6 lg:px-20 py-12">
@@ -21,7 +53,9 @@ const About = () => {
           This all can be achieved by few clicks by filling the form.
         </p>
         <div className="pl-8 pt-10">
-          <h1 className="font-bold">What getlocalcontractors helps you with?</h1>
+          <h1 className="font-bold">
+            What getlocalcontractors helps you with?
+          </h1>
           <ul>
             <li>- To find the right Professional near you</li>
             <li>

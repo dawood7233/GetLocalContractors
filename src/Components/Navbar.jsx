@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import { Link, useNavigate, useLocation } from "react-router-dom"; 
 import { Button } from "@/components/ui/button";
+
 import { allServices } from "../Components/servicesData";
 import {
   NavigationMenu,
@@ -13,6 +14,8 @@ import {
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate(); 
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   const menuItems = [
     { path: "/", label: "Home" },
@@ -27,7 +30,7 @@ const NavBar = () => {
         <div className="flex items-center p-2">
           <Link to="/" className="cursor-pointer text-lg font-bold">
             <img
-              src="/assets/images/Logo.png"
+              src={isHomePage ? "/assets/images/Logo.png" : "/assets/images/Logo(Black).png"}
               alt="Local Contractors"
               className="h-24 w-auto"
             />
@@ -58,8 +61,6 @@ const NavBar = () => {
               </Link>
             </li>
           ))}
-
-          {/* Services Dropdown using ShadCN */}
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
