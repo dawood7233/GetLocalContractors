@@ -11,11 +11,13 @@ import ServiceDetails from "./Pages/ServiceDetails";
 import UserService from "./Pages/UserService";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import CaliforniaPolicy from "./Pages/CaliforniaPolicy";
+import ScrollUp from "./Components/ScrollUp";
 
 const App = () => {
   return (
     <Router>
         <AutoScroll/>
+        <ScrollUp/>
         <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
