@@ -1,9 +1,10 @@
 import React from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import Newsletter from "@/Components/newsletter";
 
 const Contact = () => {
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto  pt-16">
       {/* Title Section */}
       <h1
         className="font-bold md:text-4xl sm:text-2xl text-xl text-center pt-10 pb-20"
@@ -42,12 +43,12 @@ const Contact = () => {
       </h1>
 
       {/* Breadcrumb */}
-      <div className="text-sm text-gray-500 mt-4">
+      <div className="text-sm text-gray-500 mt-4 ">
         <span className="text-primary">Home</span> / Contact Us
       </div>
 
       {/* Contact Section */}
-      <div className="grid md:grid-cols-2 gap-8 mt-8">
+      <div className="grid md:grid-cols-2 gap-8 mt-8 ">
         {/* Contact Information */}
         <div className="space-y-6">
           <div className="flex items-center space-x-4">
@@ -108,6 +109,9 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      <section>
+        <Newsletter />
+      </section>
     </div>
   );
 };

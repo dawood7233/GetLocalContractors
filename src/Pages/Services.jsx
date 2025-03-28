@@ -65,7 +65,7 @@ const Services = ({ visibleServices, homeView = false }) => {
               </div>
               <h3 className="text-xl font-semibold mb-2 ">{service.title}</h3>
               <p className="text-secondary mb-4">{service.description}</p>
-              <button className="px-20 py-2 bg-secondary text-white rounded-lg ">
+              <button className="px-20 py-2 bg-secondary text-white rounded-lg cursor-pointer">
                 Get Quote
               </button>
             </div>
