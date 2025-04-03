@@ -1,6 +1,7 @@
 import React from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Newsletter from "@/Components/newsletter";
+import ServicesCarousel from "@/Components/ServicesCarousel";
 
 const Contact = () => {
   return (
@@ -41,11 +42,6 @@ const Contact = () => {
           </svg>
         </span>
       </h1>
-
-      {/* Breadcrumb */}
-      <div className="text-sm text-gray-500 mt-4 ">
-        <span className="text-primary">Home</span> / Contact Us
-      </div>
 
       {/* Contact Section */}
       <div className="grid md:grid-cols-2 gap-8 mt-8 ">
@@ -111,6 +107,9 @@ const Contact = () => {
       </div>
       <section>
         <Newsletter />
+      </section>
+      <section>
+        <ServicesCarousel />
       </section>
     </div>
   );

@@ -6,6 +6,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const ServiceDetails = () => {
+  const [formDataString, setFormDataString] = useState('');
+
   const { title } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,9 +32,10 @@ const ServiceDetails = () => {
   const serviceFields = service.inputs.map((input) => ({
     name: input.question,
     label: input.question,
-    type: input.type || "text",
+    type: input.options ? "select" : "text",  
     options: input.options || null,
   }));
+  
 
   const personalInfoFields = [
     { name: "firstName", label: "First Name", type: "text" },
@@ -86,6 +89,7 @@ const ServiceDetails = () => {
     min: "",
     ipAddress: "",
     userAgent: "",
+    
   };
 
   // Create validation schema for each field
@@ -126,6 +130,28 @@ const ServiceDetails = () => {
   const validationSchema = Yup.object(fieldValidationSchemas);
 
   const handleSubmit = (values, { resetForm }) => {
+    // Create a FormData object with all the form values
+    const formData = new FormData();
+    
+    // Add all field values to FormData
+    Object.keys(values).forEach((key) => {
+      formData.append(key, values[key]);
+    });
+  
+    // Convert FormData to an object
+    const formDataObj = {};
+    formData.forEach((value, key) => {
+      formDataObj[key] = value;
+    });
+  
+    // Convert to string
+    const formDataJsonString = JSON.stringify(formDataObj);
+  
+    // Store the string in state
+    setFormDataString(formDataJsonString);  // ✅ This will now work
+  
+    console.log("Form Data as String:", formDataJsonString);
+  
     // Preserve certain values that should be retained
     const retainedValues = {
       affid: values.affid,
@@ -137,7 +163,7 @@ const ServiceDetails = () => {
       ipAddress: values.ipAddress,
       userAgent: values.userAgent,
     };
-
+  
     resetForm({
       values: {
         ...Object.keys(initialValues).reduce((acc, key) => {
@@ -148,28 +174,23 @@ const ServiceDetails = () => {
         ...retainedValues,
       },
     });
-
+  
     navigate("/thankYou");
   };
+  
 
   // Function to validate current field and move to next step
   const validateAndContinue = async (values, errors, validateField, setFieldTouched) => {
     const currentField = allFields[currentStep];
     
-    // Mark the field as touched to trigger validation
     await setFieldTouched(currentField.name, true, true);
     
-    // Validate the current field
     await validateField(currentField.name);
-    
-    // Check if there's an error for the current field
+
     if (!errors[currentField.name]) {
-      // If no error, move to the next step
       setCurrentStep(currentStep + 1);
     }
   };
-
-  // Function to go back to previous step
   const goToPreviousStep = () => {
     setCurrentStep(Math.max(0, currentStep - 1));
   };
@@ -195,9 +216,6 @@ const ServiceDetails = () => {
             className="bg-[#ffb000] h-2.5 rounded-full transition-all duration-300"
             style={{ width: `${(currentStep / (totalSteps - 1)) * 100}%` }}
           ></div>
-        </div>
-        <div className="text-center mt-2 text-sm text-gray-600">
-          Step {currentStep + 1} of {totalSteps}
         </div>
       </div>
 

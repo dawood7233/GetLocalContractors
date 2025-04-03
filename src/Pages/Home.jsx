@@ -1,10 +1,8 @@
 import React from "react";
-import { motion } from "motion/react";
 import Services from "./Services";
 import WhyUs from "@/Components/WhyUs";
 
 const Home = () => {
-  const animate = {}
 
   return (
     <div>
@@ -21,28 +19,12 @@ const Home = () => {
         <div className="">
       <svg xmlns="http://www.w3.org/2000/svg" width="123" height="24" viewBox="0 0 123 24" fill="none"><path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path><path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path><path d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z" fill="#ffb000"></path></svg>
       </div>
-        {/* <motion.h1 
-        drag
-        dragConstraints={{left:0,right:1000,top:0,bottom:200}}
-        initial={{
-          x:40,
-        }}
-        animate={{  
-          x:[0,400,400,0,0],
-          y:[0,0,200,200,0],
-        }}
-        transition={{
-          smooth:3,
-          duration:3,
-          
-        }} 
-        
-        className="text-4xl font-bold">Welcome to GetLocalContractors</motion.h1> */}
+      <h1 className="text-4xl font-bold">Get Local Contractors</h1>
         <p className="text-lg mt-2">Find the best contractors near you!</p>
       </div>
 
       {/* Right Side Image */}
-      <div className="absolute md:right-0 md:bottom-0 md:top-22 top-80 right-5">
+      <div className="absolute md:right-0 md:bottom-0 md:top-22 top-80 right-5 ">
         <img
           src="/assets/images/side-portrait.png"
           alt="Contractor working"
