@@ -19,7 +19,7 @@ const ServicesCarousel = () => {
   }, [isHovered, controls]);
 
   return (
-    <div className="overflow-hidden relative w-full bg-gray-100 py-6">
+    <div className="overflow-hidden relative w-full bg-secondary py-6">
       <motion.div
         className="flex whitespace-nowrap"
         animate={controls}

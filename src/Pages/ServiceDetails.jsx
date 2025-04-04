@@ -1,15 +1,90 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { allServices } from "../Components/servicesData";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const ServiceDetails = () => {
-  const [formDataString, setFormDataString] = useState('');
+// Utility function to check if a script is already in the DOM
+const isScriptAlreadyAdded = (src) => {
+  return document.querySelector(`script[src="${src}"]`) !== null;
+};
 
+// Function to load TrustedForm script
+const loadTrustedFormScript = () => {
+  const trustedFormSrc =
+    (document.location.protocol === "https:" ? "https" : "http") +
+    "://api.trustedform.com/trustedform.js?field=xxTrustedFormCertUrl&ping_field=xxTrustedFormPingUrl&l=" +
+    new Date().getTime() +
+    Math.random();
+
+  if (!isScriptAlreadyAdded(trustedFormSrc)) {
+    const trustedFormScript = document.createElement("script");
+    trustedFormScript.type = "text/javascript";
+    trustedFormScript.async = true;
+    trustedFormScript.src = trustedFormSrc;
+
+    document.body.appendChild(trustedFormScript);
+
+    return () => {
+      if (document.body.contains(trustedFormScript)) {
+        document.body.removeChild(trustedFormScript);
+      }
+    };
+  }
+};
+
+// Function to load LeadiD script
+const loadLeadiDScript = () => {
+  const leadiDScriptSrc =
+    "//create.lidstatic.com/campaign/402848de-d8aa-7158-923b-a6a24e7956dc.js?snippet_version=2";
+
+  if (!isScriptAlreadyAdded(leadiDScriptSrc)) {
+    const leadiDScript = document.createElement("script");
+    leadiDScript.id = "LeadiDscript_campaign";
+    leadiDScript.type = "text/javascript";
+    leadiDScript.async = true;
+    leadiDScript.src = leadiDScriptSrc;
+
+    document.body.appendChild(leadiDScript);
+
+    return () => {
+      if (document.body.contains(leadiDScript)) {
+        document.body.removeChild(leadiDScript);
+      }
+    };
+  }
+};
+
+// Function to fetch initial form data
+const fetchInitialData = (setFieldValue) => {
+  fetch("https://api.ipify.org?format=json")
+    .then((response) => response.json())
+    .then((data) => {
+      setFieldValue("ipAddress", data.ip);
+    })
+    .catch((error) => console.error("Failed to fetch IP address:", error));
+
+  setFieldValue("userAgent", navigator.userAgent);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const affid = urlParams.get("affid") || "";
+  const rid = urlParams.get("rid") || "";
+  const tid = urlParams.get("tid") || "";
+
+  setFieldValue("affid", affid);
+  setFieldValue("rid", rid);
+  setFieldValue("tid", tid);
+  setFieldValue("url", window.location.href);
+
+  const start = new Date().getTime();
+  const min = Math.floor(start / 60000);
+  setFieldValue("start", start);
+  setFieldValue("min", min);
+};
+
+const ServiceDetails = () => {
   const { title } = useParams();
-  const location = useLocation();
   const navigate = useNavigate();
   const decodedTitle = decodeURIComponent(title);
   const service = allServices.find(
@@ -17,6 +92,7 @@ const ServiceDetails = () => {
   );
 
   const [currentStep, setCurrentStep] = useState(0);
+  const [formDataString, setFormDataString] = useState("");
 
   if (!service) {
     return (
@@ -32,10 +108,9 @@ const ServiceDetails = () => {
   const serviceFields = service.inputs.map((input) => ({
     name: input.question,
     label: input.question,
-    type: input.options ? "select" : "text",  
+    type: input.options ? "select" : "text",
     options: input.options || null,
   }));
-  
 
   const personalInfoFields = [
     { name: "firstName", label: "First Name", type: "text" },
@@ -49,19 +124,51 @@ const ServiceDetails = () => {
   ];
 
   const additionalFields = [
-    { name: "HomeOwner", label: "Home Owner:", type: "select", options: ["Yes"] },
-    { name: "PropertyType", label: "Property Type?", type: "select", options: ["Commercial"] },
-    { name: "PurchaseTimeFrame", label: "Purchase TimeFrame", type: "select", options: ["1-2 weeks"] },
-    { name: "BestTimeToCall", label: "What is the best time to call you?", type: "select", options: ["Anytime"] },
-    { name: "Brief data about requirements", label: "Tell us about your service requirements in brief", type: "textarea" },
+    {
+      name: "HomeOwner",
+      label: "Home Owner:",
+      type: "select",
+      options: ["Yes", "No"],
+    },
+    {
+      name: "PropertyType",
+      label: "Property Type?",
+      type: "select",
+      options: ["Commercial", "Multi-Unit", "Residential"],
+    },
+    {
+      name: "PurchaseTimeFrame",
+      label: "Purchase TimeFrame",
+      type: "select",
+      options: [
+        "1-2 weeks",
+        "3-4 weeks",
+        "5-6 weeks",
+        "7-8 weeks",
+        "Time Is Flexible",
+      ],
+    },
+    {
+      name: "BestTimeToCall",
+      label: "What is the best time to call you?",
+      type: "select",
+      options: ["Anytime", "Morning", "Afternoon", "Evening"],
+    },
+    {
+      name: "Brief data about requirements",
+      label: "Tell us about your service requirements in brief",
+      type: "textarea",
+    },
     { name: "agreement", label: "Agreement", type: "checkbox" },
   ];
 
-  // Combine all fields into one array
-  const allFields = [...serviceFields, ...personalInfoFields, ...additionalFields];
+  const allFields = [
+    ...serviceFields,
+    ...personalInfoFields,
+    ...additionalFields,
+  ];
   const totalSteps = allFields.length;
 
-  // Create initial values
   const initialValues = {
     ...service.inputs.reduce((acc, input) => {
       acc[input.question] = "";
@@ -84,15 +191,13 @@ const ServiceDetails = () => {
     affid: "",
     rid: "",
     tid: "",
-    url: window.location.href,
+    url: "",
     start: "",
     min: "",
     ipAddress: "",
     userAgent: "",
-    
   };
 
-  // Create validation schema for each field
   const fieldValidationSchemas = {
     firstName: Yup.string().required("First name is required"),
     lastName: Yup.string().required("Last name is required"),
@@ -121,38 +226,21 @@ const ServiceDetails = () => {
     ),
   };
 
-  // Add validation for service-specific fields
   service.inputs.forEach((input) => {
-    fieldValidationSchemas[input.question] = Yup.string().required("This field is required");
+    fieldValidationSchemas[input.question] = Yup.string().required(
+      "This field is required"
+    );
   });
 
-  // Create full validation schema
   const validationSchema = Yup.object(fieldValidationSchemas);
 
   const handleSubmit = (values, { resetForm }) => {
-    // Create a FormData object with all the form values
-    const formData = new FormData();
-    
-    // Add all field values to FormData
-    Object.keys(values).forEach((key) => {
-      formData.append(key, values[key]);
-    });
-  
-    // Convert FormData to an object
-    const formDataObj = {};
-    formData.forEach((value, key) => {
-      formDataObj[key] = value;
-    });
-  
-    // Convert to string
+    const formDataObj = { ...values };
     const formDataJsonString = JSON.stringify(formDataObj);
-  
-    // Store the string in state
-    setFormDataString(formDataJsonString);  // ✅ This will now work
-  
+    setFormDataString(formDataJsonString);
+    console.log("Form Data as Object:", formDataObj);
     console.log("Form Data as String:", formDataJsonString);
-  
-    // Preserve certain values that should be retained
+
     const retainedValues = {
       affid: values.affid,
       rid: values.rid,
@@ -163,7 +251,7 @@ const ServiceDetails = () => {
       ipAddress: values.ipAddress,
       userAgent: values.userAgent,
     };
-  
+
     resetForm({
       values: {
         ...Object.keys(initialValues).reduce((acc, key) => {
@@ -174,30 +262,52 @@ const ServiceDetails = () => {
         ...retainedValues,
       },
     });
-  
-    navigate("/thankYou");
+
+    navigate("/ThankYou");
   };
-  
 
-  // Function to validate current field and move to next step
-  const validateAndContinue = async (values, errors, validateField, setFieldTouched) => {
+  const validateAndContinue = async (
+    values,
+    errors,
+    validateForm,
+    setFieldTouched,
+    setErrors
+  ) => {
     const currentField = allFields[currentStep];
-    
-    await setFieldTouched(currentField.name, true, true);
-    
-    await validateField(currentField.name);
 
-    if (!errors[currentField.name]) {
+    await setFieldTouched(currentField.name, true, false);
+    const validationErrors = await validateForm();
+
+    if (
+      !validationErrors[currentField.name] &&
+      values[currentField.name] !== ""
+    ) {
       setCurrentStep(currentStep + 1);
     }
   };
+
   const goToPreviousStep = () => {
     setCurrentStep(Math.max(0, currentStep - 1));
   };
 
+  // Reset form on URL change
+  useEffect(() => {
+    setCurrentStep(0); // Reset step to beginning
+  }, [title]); // Trigger when URL parameter 'title' changes
+
+  // Load external scripts and initial data
+  useEffect(() => {
+    const cleanupTrustedForm = loadTrustedFormScript();
+    const cleanupLeadiD = loadLeadiDScript();
+
+    return () => {
+      if (cleanupTrustedForm) cleanupTrustedForm();
+      if (cleanupLeadiD) cleanupLeadiD();
+    };
+  }, []);
+
   return (
     <div className="container mx-auto px-6 py-12 pt-24">
-      {/* Service Title Section */}
       <div className="flex items-center justify-center gap-4 pb-6">
         <h1 className="text-3xl">Get A {title} Consultation!</h1>
         {service?.image && (
@@ -209,23 +319,34 @@ const ServiceDetails = () => {
         )}
       </div>
 
-      {/* Progress Bar */}
       <div className="max-w-md mx-auto mb-8">
         <div className="bg-gray-200 rounded-full h-2.5">
-          <div 
+          <div
             className="bg-[#ffb000] h-2.5 rounded-full transition-all duration-300"
             style={{ width: `${(currentStep / (totalSteps - 1)) * 100}%` }}
           ></div>
         </div>
       </div>
 
-      {/* Form with Formik */}
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values, errors, touched, setFieldValue, validateField, setFieldTouched }) => {
+        {({
+          values,
+          errors,
+          touched,
+          setFieldValue,
+          validateForm,
+          setFieldTouched,
+          setErrors,
+        }) => {
+          // Load initial data when Formik is ready
+          useEffect(() => {
+            fetchInitialData(setFieldValue);
+          }, [setFieldValue]);
+
           const currentField = allFields[currentStep];
           const isLastStep = currentStep === totalSteps - 1;
 
@@ -236,7 +357,6 @@ const ServiceDetails = () => {
                   {currentField.label}
                 </h2>
 
-                {/* Current Field */}
                 <div className="mb-6">
                   {currentField.type === "select" ? (
                     <div>
@@ -257,7 +377,7 @@ const ServiceDetails = () => {
                     <Field
                       as="textarea"
                       name={currentField.name}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffb000] focus:border-transparent"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffb000] focus:border-transparent resize-none"
                       rows="4"
                     />
                   ) : currentField.type === "checkbox" ? (
@@ -269,18 +389,35 @@ const ServiceDetails = () => {
                       />
                       <span className="text-sm text-[#1f2020] text-justify">
                         By clicking GET YOUR QUOTE, I agree to the{" "}
-                        <Link to="/userTerms" className="underline text-blue-400">
+                        <Link
+                          to="/userTerms"
+                          className="underline text-blue-400"
+                        >
                           Terms of Service
                         </Link>{" "}
                         and{" "}
-                        <Link to="/privacyPolicy" className="underline text-blue-400">
+                        <Link
+                          to="/privacyPolicy"
+                          className="underline text-blue-400"
+                        >
                           Privacy Policy
                         </Link>
-                        , I authorize home improvement companies, their contractors, and{" "}
-                        <Link to="/marketingPartners" className="underline text-blue-400">
+                        , I authorize home improvement companies, their
+                        contractors, and{" "}
+                        <Link
+                          to="/marketingPartners"
+                          className="underline text-blue-400"
+                        >
                           Partner Companies
                         </Link>{" "}
-                        to contact me about my service request.
+                        to contact me about home improvement offers by phone
+                        calls and text messages to the number I provided. I
+                        authorize that these marketing communications may be
+                        delivered to me using an automatic telephone dialing
+                        system or by prerecorded message. I understand that my
+                        consent is not a condition of purchase, and I may revoke
+                        that consent at any time. Mobile and data charges may
+                        apply. California Residents.
                       </span>
                     </div>
                   ) : currentField.name === "phone" ? (
@@ -289,7 +426,9 @@ const ServiceDetails = () => {
                       name={currentField.name}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffb000] focus:border-transparent"
                       onChange={(e) => {
-                        const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                        const value = e.target.value
+                          .replace(/\D/g, "")
+                          .slice(0, 10);
                         setFieldValue(currentField.name, value);
                       }}
                       placeholder="Enter your 10-digit phone number"
@@ -300,7 +439,9 @@ const ServiceDetails = () => {
                       name={currentField.name}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffb000] focus:border-transparent"
                       onChange={(e) => {
-                        const value = e.target.value.replace(/\D/g, '').slice(0, 5);
+                        const value = e.target.value
+                          .replace(/\D/g, "")
+                          .slice(0, 5);
                         setFieldValue(currentField.name, value);
                       }}
                       placeholder="Enter 5-digit zip code"
@@ -313,7 +454,7 @@ const ServiceDetails = () => {
                       placeholder={`Enter your ${currentField.label.toLowerCase()}`}
                     />
                   )}
-                  
+
                   <ErrorMessage
                     name={currentField.name}
                     component="p"
@@ -321,7 +462,6 @@ const ServiceDetails = () => {
                   />
                 </div>
 
-                {/* Navigation Buttons */}
                 <div className="flex gap-4 justify-between mt-6">
                   {currentStep > 0 && (
                     <button
@@ -332,7 +472,7 @@ const ServiceDetails = () => {
                       Back
                     </button>
                   )}
-                  
+
                   {isLastStep ? (
                     <button
                       type="submit"
@@ -343,7 +483,15 @@ const ServiceDetails = () => {
                   ) : (
                     <button
                       type="button"
-                      onClick={() => validateAndContinue(values, errors, validateField, setFieldTouched)}
+                      onClick={() =>
+                        validateAndContinue(
+                          values,
+                          errors,
+                          validateForm,
+                          setFieldTouched,
+                          setErrors
+                        )
+                      }
                       className="px-6 py-2 bg-[#ffb000] text-black rounded-md hover:bg-amber-500 transition duration-300 ml-auto"
                     >
                       Next

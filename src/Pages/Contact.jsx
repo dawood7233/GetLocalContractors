@@ -111,6 +111,36 @@ const Contact = () => {
       <section>
         <ServicesCarousel />
       </section>
+      {/* Divider line */}
+      <div className="flex items-center justify-center my-8">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="70"
+          height="70"
+          viewBox="0 0 123 24"
+          fill="none"
+          className="mr-2"
+        >
+          <path
+            d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+            fill="#ffb000"
+          />
+        </svg>
+        <div className="border-t border-secondary w-full max-w-md"></div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="70"
+          height="70"
+          viewBox="0 0 123 24"
+          fill="none"
+          className="ml-2 -scale-x-100"
+        >
+          <path
+            d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+            fill="#ffb000"
+          />
+        </svg>
+      </div>
     </div>
   );
 };

@@ -13,6 +13,7 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import CaliforniaPolicy from "./Pages/CaliforniaPolicy";
 import ScrollUp from "./Components/ScrollUp";
 import Cursor from "./Components/Cursor";
+import ThankYou from "./Pages/ThankYou";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/UserService" element={<UserService/>}></Route>
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}></Route>
           <Route path="/CaliforniaPolicy" element={<CaliforniaPolicy/>}></Route>
+          <Route path="/ThankYou" element={<ThankYou/>}></Route>
         </Routes>
         <Footer/>
     </Router>
