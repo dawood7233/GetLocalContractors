@@ -42,7 +42,7 @@ const Footer = () => {
           <h6 className="text-lg font-semibold mb-2">Legal</h6>
           <ul className="space-y-1">
             <li>
-              <Link to="/UserService" className="hover:underline">
+              <Link to="/UserTerms" className="hover:underline">
                 Terms of Use
               </Link>
             </li>
@@ -63,7 +63,7 @@ const Footer = () => {
         <div>
           <h6 className="text-lg font-semibold mb-2">Stay Connected</h6>
           <p className="text-sm mb-2">info@getlocalcontractors.com</p>
-          <p className="text-sm">1500 Cehstnut St. Philadelphia, PA, 19102</p>
+          <p className="text-sm">80 Broad Street, New York, NY, 10001</p>
         </div>
       </div>
 

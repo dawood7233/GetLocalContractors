@@ -4,11 +4,40 @@ import { Link } from "react-router-dom";
 const PrivacyPolicy = () => {
   return (
     <div className="pt-20 ">
-      <div className=" text-black text-center py-16 px-6 w-full hover">
-        <h1 className="text-4xl font-bold mb-4 cursor-pointer">
-          Privacy Policy
-        </h1>
-      </div>
+      {/* Heading Section */}
+      <h1 className="font-bold md:text-4xl sm:text-2xl text-xl text-center pt-6 pb-20">
+        <span className="absolute left-[80%] sm:left-[66%] md:left-[70%] top-29">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[70px] h-[14px] sm:w-[90px] sm:h-[18px] md:w-[123px] md:h-[24px]"
+            viewBox="0 0 123 24"
+            fill="none"
+          >
+            <path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path>
+            <path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path>
+            <path
+              d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+              fill="#ffb000"
+            ></path>
+          </svg>
+        </span>
+        Privacy Policy
+        <span className="absolute left-[5%] sm:left-[20%] md:left-[16%]  top-29 -scale-x-100">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[70px] h-[14px] sm:w-[90px] sm:h-[18px] md:w-[123px] md:h-[24px]"
+            viewBox="0 0 123 24"
+            fill="none"
+          >
+            <path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path>
+            <path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path>
+            <path
+              d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+              fill="#ffb000"
+            ></path>
+          </svg>
+        </span>
+      </h1>
       <div className="p-14 pt-6">
         <p>
           PLEASE READ THIS PRIVACY POLICY CAREFULLY. BY ACCESSING OR USING THE
@@ -450,7 +479,7 @@ const PrivacyPolicy = () => {
         <p>
           The California Consumer Protection Act has granted specific rights and
           remedies. To review all California Privacy Rights and Remedies please
-          <Link to="/californiaPrivacy" className="text-blue-400 underline">
+          <Link to="/CaliforniaPolicy" className="text-blue-400 underline">
             {" "}
             click here
           </Link>
@@ -458,12 +487,12 @@ const PrivacyPolicy = () => {
         <h1 className="font-bold text-2xl">Contact Information</h1>
         <p>
           <h4 className="font-bold">Email:</h4> info@getlocalcontractors.com
-          <h4 className="font-bold">Address:</h4> 1500 Cehstnut St.
-          Philadelphia, PA, 19102 If you have any comments or questions
-          regarding our Privacy Policy, or to report abuse of any personal
-          information collected under this Privacy Policy, please email us at
-          info@getlocalcontractors.com For more information about protecting
-          your privacy, you may wish to visit:{" "}
+          <h4 className="font-bold">Address:</h4> 80 Broad Street, New York, NY,
+          10001 If you have any comments or questions regarding our Privacy
+          Policy, or to report abuse of any personal information collected under
+          this Privacy Policy, please email us at info@getlocalcontractors.com
+          For more information about protecting your privacy, you may wish to
+          visit:{" "}
           <Link
             to="https://www.ftc.gov/"
             className="text-blue-400 underline"

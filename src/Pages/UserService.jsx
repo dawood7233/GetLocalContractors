@@ -4,11 +4,40 @@ import { Link } from "react-router-dom";
 const UserService = () => {
   return (
     <div className="user-terms pt-20 pb-10">
-      <div className=" text-black text-center py-16 px-6 w-full hover">
-        <h1 className="text-4xl font-bold mb-4 cursor-pointer">
-          User Terms And Conditions
-        </h1>
-      </div>
+      {/* Heading Section */}
+      <h1 className="font-bold md:text-4xl sm:text-2xl text-xl text-center pt-6 pb-20">
+        <span className="absolute left-[80%] sm:left-[66%] md:left-[70%] top-29">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[70px] h-[14px] sm:w-[90px] sm:h-[18px] md:w-[123px] md:h-[24px]"
+            viewBox="0 0 123 24"
+            fill="none"
+          >
+            <path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path>
+            <path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path>
+            <path
+              d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+              fill="#ffb000"
+            ></path>
+          </svg>
+        </span>
+        Terms&Conditions
+        <span className="absolute left-[5%] sm:left-[20%] md:left-[16%]  top-29 -scale-x-100">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[70px] h-[14px] sm:w-[90px] sm:h-[18px] md:w-[123px] md:h-[24px]"
+            viewBox="0 0 123 24"
+            fill="none"
+          >
+            <path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path>
+            <path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path>
+            <path
+              d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+              fill="#ffb000"
+            ></path>
+          </svg>
+        </span>
+      </h1>
       <div className="p-14 pt-6">
         <section>
           <p>
@@ -24,7 +53,7 @@ const UserService = () => {
             alternative methods (including, for example, telephone, mail, text,
             email, or facsimile), you accept and agree to be bound by this
             Agreement, these Services, and our{" "}
-            <Link to="/privacyPolicy" className="text-blue-400 underline">
+            <Link to="/PrivacyPolicy" className="text-blue-400 underline">
               Privacy Policy
             </Link>
             , which is incorporated by reference.

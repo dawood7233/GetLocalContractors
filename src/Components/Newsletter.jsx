@@ -3,18 +3,23 @@ import { Link } from "react-router-dom";
 
 const Newsletter = () => {
   return (
-    <div className="bg-primary text-secondary p-20 ">
-      <span className="">
-        <span className="text-2xl font-bold ">
-        Get Our Services
+    <div className="bg-primary text-secondary p-20">
+      <div className="flex items-center w-full">
+        {/* Left Text */}
+        <span className="text-2xl font-bold whitespace-nowrap">
+          Get Our Services
         </span>
-        <input className="mx-10 border-b-1" type="text" placeholder=""/>
+
+        {/* Line between */}
+        <div className="flex-grow h-[2px] bg-secondary-foreground mx-4" />
+
+        {/* Button */}
         <Link to="/services">
-          <button className="mt-4 bg-accent text-secondary px-6 py-2 rounded-md cursor-pointer font-semibold">
+          <button className="bg-accent text-secondary px-6 py-2 rounded-md cursor-pointer font-semibold whitespace-nowrap">
             Get Services
           </button>
-          </Link>
-      </span>
+        </Link>
+      </div>
     </div>
   );
 };

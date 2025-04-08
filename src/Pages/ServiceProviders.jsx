@@ -52,9 +52,40 @@ const ServiceProviders = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 pt-10">
-      <div className="bg-gradient-to-tr from-amber-500 to-[#1f2020] text-black text-center py-16 px-6 w-full hover">
-        <h1 className="text-4xl font-bold pt-5 cursor-pointer">Marketing Partners</h1>
-      </div>
+      {/* Heading Section */}
+      <h1 className="font-bold md:text-4xl sm:text-2xl text-xl text-center pt-15 pb-20">
+        <span className="absolute left-[80%] sm:left-[66%] md:left-[70%] top-29">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[70px] h-[14px] sm:w-[90px] sm:h-[18px] md:w-[123px] md:h-[24px]"
+            viewBox="0 0 123 24"
+            fill="none"
+          >
+            <path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path>
+            <path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path>
+            <path
+              d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+              fill="#ffb000"
+            ></path>
+          </svg>
+        </span>
+        Partner Companies
+        <span className="absolute left-[5%] sm:left-[20%] md:left-[16%]  top-29 -scale-x-100">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[70px] h-[14px] sm:w-[90px] sm:h-[18px] md:w-[123px] md:h-[24px]"
+            viewBox="0 0 123 24"
+            fill="none"
+          >
+            <path d="M0 5.74514H6V17.7451H0V5.74514Z" fill="#ffb000"></path>
+            <path d="M6 8.74514H103V14.7451H6V8.74514Z" fill="#ffb000"></path>
+            <path
+              d="M99 11.7451L110.745 0L122.49 11.7451L110.745 23.4903L99 11.7451Z"
+              fill="#ffb000"
+            ></path>
+          </svg>
+        </span>
+      </h1>
       <ul className="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {marketingPartners.map((partner, index) => (
           <li key={index} className="text-gray-700 text-sm border-b py-1">

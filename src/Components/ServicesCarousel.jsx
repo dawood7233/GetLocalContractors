@@ -1,31 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue } from "framer-motion";
 import { allServices } from "./servicesData";
 import { Link } from "react-router-dom";
 
 const ServicesCarousel = () => {
-  const controls = useAnimation();
+  const x = useMotionValue(0);
+  const containerRef = useRef(null);
+  const requestRef = useRef();
+  const prevTimestamp = useRef(0);
+  const speed = 50; 
   const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
+  const animate = (timestamp) => {
+    if (!prevTimestamp.current) prevTimestamp.current = timestamp;
+    const delta = timestamp - prevTimestamp.current;
+    prevTimestamp.current = timestamp;
+
     if (!isHovered) {
-      controls.start({
-        x: ["100%", "-100%"], 
-        transition: { repeat: Infinity, ease: "linear", duration: 15 },
-      });
-    } else {
-      controls.stop(); 
+      const moveBy = (speed * delta) / 1000;
+      x.set(x.get() - moveBy);
+
+      // Reset to 0 if scrolled too far (looping)
+      const totalWidth = containerRef.current.scrollWidth / 2;
+      if (Math.abs(x.get()) >= totalWidth) {
+        x.set(0);
+      }
     }
-  }, [isHovered, controls]);
+
+    requestRef.current = requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    requestRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(requestRef.current);
+  }, [isHovered]);
 
   return (
     <div className="overflow-hidden relative w-full bg-secondary py-6">
       <motion.div
         className="flex whitespace-nowrap"
-        animate={controls}
-        onMouseEnter={() => setIsHovered(true)} 
-        onMouseLeave={() => setIsHovered(false)} 
+        ref={containerRef}
+        style={{ x }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
+        {/* Duplicate services to make it seamless */}
         {[...allServices, ...allServices].map((service, index) => (
           <motion.div
             key={index}
