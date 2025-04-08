@@ -63,7 +63,6 @@ const Footer = () => {
         <div>
           <h6 className="text-lg font-semibold mb-2">Stay Connected</h6>
           <p className="text-sm mb-2">info@getlocalcontractors.com</p>
-          <p className="text-sm">80 Broad Street, New York, NY, 10001</p>
         </div>
       </div>
 
