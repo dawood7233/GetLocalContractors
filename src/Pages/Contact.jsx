@@ -5,7 +5,7 @@ import ServicesCarousel from "@/Components/ServicesCarousel";
 
 const Contact = () => {
   return (
-    <div className="container mx-auto  pt-16">
+    <div className="pt-16">
       {/* Title Section */}
       <h1
         className="font-bold md:text-4xl sm:text-2xl text-xl text-center pt-10 pb-20"

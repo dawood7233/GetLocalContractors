@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Newsletter = () => {
   return (
     <div className="bg-primary text-secondary p-20">
-      <div className="flex items-center w-full">
+      <div className="flex items-center w-full flex-col sm:flex-row gap-y-4">
         {/* Left Text */}
         <span className="text-2xl font-bold whitespace-nowrap">
           Get Our Services

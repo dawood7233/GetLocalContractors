@@ -20,7 +20,7 @@ const ServicesCarousel = () => {
       const moveBy = (speed * delta) / 1000;
       x.set(x.get() - moveBy);
 
-      // Reset to 0 if scrolled too far (looping)
+      
       const totalWidth = containerRef.current.scrollWidth / 2;
       if (Math.abs(x.get()) >= totalWidth) {
         x.set(0);
@@ -53,7 +53,7 @@ const ServicesCarousel = () => {
           >
             <Link
               to={`/services/${service.title}`}
-              className="block px-6 py-3 bg-primary text-secondary rounded-lg shadow-md hover:bg-secondary hover:text-primary transition-all"
+              className="block px-6 py-3 bg-primary text-secondary rounded-lg shadow-md hover:bg-secondary-foreground transition-all"
             >
               {service.title}
             </Link>
